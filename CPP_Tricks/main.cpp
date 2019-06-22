@@ -1,42 +1,10 @@
 #include <iostream>
 #include <chrono>
+#include "EnumerationCounting.h"
+#include "PassingObjectsAnonymously.h"
 
 using tclock = std::chrono::high_resolution_clock;
 using timestamp = tclock::time_point;
-
-struct MyStruct
-{
-	int a;
-	int b;
-};
-
-class Plane
-{
-private:
-	int wing_span;
-	int weight;
-	int seats;
-
-public:
-	Plane(int wing_span, int weight, int seats): wing_span(wing_span), weight(weight), seats(seats) {}
-	int get_wing_span() const { return wing_span; }
-	int get_weight() const { return weight; }
-	int get_seats() const { return seats; }
-};
-
-void test_func(MyStruct s);
-void cpu_cycles();
-Plane create_plane(Plane plane);
-
-enum
-{
-	ENUM1,
-	ENUM2,
-	ENUM3,
-	ENUM4,
-	ENUM5,
-	COUNT
-};
 
 	/*timestamp start = tclock::now();
 
@@ -66,11 +34,6 @@ int main(int argc, char *argv[])
 	std::cout << (short)b[3] << "\n";*/
 	//std::cout << (short)*(b += 3) << "\n";
 	std::cout << COUNT << "\n";
-	MyStruct my_struct;
-	my_struct.a = 45;
-	my_struct.b = 56;
-	test_func({ 45, 56 });
-	Plane plane = create_plane(Plane(500, 10000, 400));
 	unsigned int max = UINT_MAX;
 	int frame = 0;
 	int total_frames = 6;
@@ -123,12 +86,4 @@ void cpu_cycles()
 	} while (time_span.count() < 1);
 
 	std::cout << "num is " << num << "\n";
-}
-
-Plane create_plane(Plane plane)
-{
-	std::cout << plane.get_wing_span() << "\n";
-	std::cout << plane.get_weight() << "\n";
-	std::cout << plane.get_seats() << "\n";
-	return plane;
 }
